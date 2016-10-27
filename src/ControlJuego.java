@@ -36,7 +36,7 @@ public class ControlJuego {
 	 */
 	public void inicializarPartida(){
 		//Borro del tablero la información que pudiera haber anteriormente (los pongo todos a cero):
-
+		
 		//Me creo LADO_TABLERO*LADO_TABLERO números en un array list, uno para cada una de las posiciones del tablero:
 
 		//Saco 20 posiciones sin repetir del array y les coloco una mina en el tablero:
@@ -45,7 +45,23 @@ public class ControlJuego {
 		
 		//Pongo la puntuación a cero:
 
+		for (int i = 0; i < LADO_TABLERO; i++) {
+			for (int j = 0; j < LADO_TABLERO; j++) {
+				tablero[i][j] = 0;
+			}
+		}
 		
+		for (int i = 0; i < MINAS_INICIALES; i++) {
+			int aleatorioX = (int) (Math.random()*10);
+			int aleatorioY = (int) (Math.random()*10);
+			
+			if (tablero[aleatorioX][aleatorioY] == 0) {
+				tablero[aleatorioX][aleatorioY] = -1;
+			}
+			if (tablero[aleatorioX][aleatorioY] == -1) {
+				i--;
+			}
+		}
 	}
 	
 	/**Cálculo de las minas adjuntas:
