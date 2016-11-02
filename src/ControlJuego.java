@@ -7,7 +7,7 @@ import java.util.Random;
  * Si hay una mina en una posici贸n guarda el n煤mero -1
  * Si no hay una mina, se guarda cu谩ntas minas hay alrededor.
  * Almacena la puntuaci贸n de la partida
- * @author jesusredondogarcia
+ * @author Carlos Javier Fern醤dez D韆z
  *
  */
 public class ControlJuego {
@@ -58,10 +58,20 @@ public class ControlJuego {
 			if (tablero[aleatorioX][aleatorioY] == 0) {
 				tablero[aleatorioX][aleatorioY] = -1;
 			}
-			if (tablero[aleatorioX][aleatorioY] == -1) {
+			else{
 				i--;
 			}
 		}
+		
+		for (int i = 0; i < LADO_TABLERO; i++) {
+			for (int j = 0; j < LADO_TABLERO; j++) {
+				if (tablero[i][j] == 0) {
+					tablero[i][j] = calculoMinasAdjuntas(i, j);
+				}
+			}
+		}
+		
+		puntuacion = 0;
 	}
 	
 	/**C谩lculo de las minas adjuntas:
@@ -73,8 +83,22 @@ public class ControlJuego {
 	 * @return : El n煤mero de minas que hay alrededor de la casilla [i][j]
 	 */
 	private int calculoMinasAdjuntas(int i, int j){
-
+		int cont = 0;
+		
+		for (int x = i-1; x <= i+1 ; x++) {
+			for (int y = j-1 ; y <= j+1 ; y++) {
+				if ((x >= 0) && (y >= 0)) {
+					if ((x < 10) && (y < 10)) {
+						if (tablero[x][y] == MINA) {
+							cont++;
+						}
+					}
+				}
+			}
+		}
+		return cont;
 	}
+
 	
 	/**
 	 * M茅todo que nos permite 
@@ -83,9 +107,9 @@ public class ControlJuego {
 	 * @param j: posici贸n horizontalmente de la casilla a abrir
 	 * @return : Verdadero si no ha explotado una mina. Falso en caso contrario.
 	 */
-	public boolean abrirCasilla(int i, int j){
+	/*public boolean abrirCasilla(int i, int j){
 
-	}
+	}*/
 	
 	
 	
@@ -93,8 +117,8 @@ public class ControlJuego {
 	 * M茅todo que checkea si se ha terminado el juego porque se han abierto todas las casillas.
 	 * @return Devuelve verdadero si se han abierto todas las celdas que no son minas.
 	 **/
-	public boolean esFinJuego(){
-	}
+	/*public boolean esFinJuego(){
+	}*/
 	
 	
 	/**
@@ -118,14 +142,14 @@ public class ControlJuego {
 	 * @param j : posici贸n horizontal de la cela.
 	 * @return Un entero que representa el n煤mero de minas alrededor de la celda
 	 */
-	public int getMinasAlrededor(int i, int j) {
-	}
+	/*public int getMinasAlrededor(int i, int j) {
+	}*/
 
 	/**
 	 * M茅todo que devuelve la puntuaci贸n actual
 	 * @return Un entero con la puntuaci贸n actual
 	 */
-	public int getPuntuacion() {
-	}
+	/*public int getPuntuacion() {
+	}*/
 	
 }
