@@ -139,7 +139,28 @@ public class VentanaPrincipal {
 	 * Método que inicializa todos los lísteners que necesita inicialmente el programa
 	 */
 	public void inicializarListeners(){
-		//TODO
+		botonEmpezar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				juego.inicializarPartida();
+				
+				for (int i = 0; i < botonesJuego.length; i++) {
+					for (int j = 0; j < botonesJuego[i].length; j++) {
+						panelesJuego[i][j].removeAll();
+						panelesJuego[i][j].add(botonesJuego[i][j]);
+					}
+				}
+				pantallaPuntuacion.setText("0");
+				refrescarPantalla();
+			}
+		});
+		
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego[i].length; j++) {
+				botonesJuego[i][j].addActionListener(new ActionBoton(i, j, this, juego));
+			}
+		}
 	}
 	
 	
@@ -156,7 +177,14 @@ public class VentanaPrincipal {
 	 * @param j: posición horizontal de la celda.
 	 */
 	public void mostrarNumMinasAlrededor(int i , int j) {
-		//TODO
+		int minasAlrededor = juego.getMinasAlrededor(i, j);
+		
+		panelesJuego[i][j].removeAll();
+		JLabel pantallaMinasAlrededor = new JLabel(""+minasAlrededor);
+		pantallaMinasAlrededor.setForeground(correspondenciaColores[minasAlrededor]);
+		pantallaMinasAlrededor.setHorizontalAlignment(JLabel.CENTER);
+		panelesJuego[i][j].add(pantallaMinasAlrededor);
+		refrescarPantalla();
 	}
 	
 	
@@ -166,14 +194,23 @@ public class VentanaPrincipal {
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el juego.
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
-		//TODO
+		if (porExplosion) {
+			
+		}
+		else {
+			for (int i = 0; i < botonesJuego.length; i++) {
+				for (int j = 0; j < botonesJuego[i].length; j++) {
+					botonesJuego[i][j].setEnabled(false);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Método que muestra la puntuación por pantalla.
 	 */
 	public void actualizarPuntuacion() {
-		//TODO
+		pantallaPuntuacion.setText(""+juego.getPuntuacion());
 	}
 	
 	/**
@@ -199,8 +236,7 @@ public class VentanaPrincipal {
 		//IMPORTANTE, PRIMERO HACEMOS LA VENTANA VISIBLE Y LUEGO INICIALIZAMOS LOS COMPONENTES.
 		ventana.setVisible(true);
 		inicializarComponentes();	
-		inicializarListeners();	
-		juego.depurarTablero();
+		inicializarListeners();
 	}
 
 
