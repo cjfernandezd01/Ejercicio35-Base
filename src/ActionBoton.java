@@ -36,11 +36,11 @@ public class ActionBoton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (juego.abrirCasilla(i, j)) {
-			ventanaPrincipal.mostrarNumMinasAlrededor(i, j);
-			ventanaPrincipal.actualizarPuntuacion();
-			if (juego.esFinJuego()) {
-				ventanaPrincipal.mostrarFinJuego(false);
-			}
+				ventanaPrincipal.mostrarNumMinasAlrededor(i, j);
+				ventanaPrincipal.actualizarPuntuacion();
+				if (juego.esFinJuego()) {
+					ventanaPrincipal.mostrarFinJuego(false);
+				}
 		}
 		else{
 			ventanaPrincipal.mostrarFinJuego(true);
