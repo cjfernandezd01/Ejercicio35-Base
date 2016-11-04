@@ -152,11 +152,6 @@ public class VentanaPrincipal {
 					}
 				}
 				pantallaPuntuacion.setText("0");
-				for (int i = 0; i < botonesJuego.length; i++) {
-					for (int j = 0; j < botonesJuego[i].length; j++) {
-						botonesJuego[i][j].setEnabled(true);
-					}
-				}
 				refrescarPantalla();
 			}
 		});
@@ -200,14 +195,13 @@ public class VentanaPrincipal {
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
 		if (porExplosion) {
-			JOptionPane.showMessageDialog(ventana, "Has explotado una mina!!\nPuntuación final: "+juego.getPuntuacion(), "FIN DEL JUEGO", 0);
+			
 		}
 		else {
-			JOptionPane.showMessageDialog(ventana, "¡¡¡Enhorabuena, has ganado!!!\nPuntuación final: "+juego.getPuntuacion(), "FIN DEL JUEGO", 1);
-		}
-		for (int i = 0; i < botonesJuego.length; i++) {
-			for (int j = 0; j < botonesJuego[i].length; j++) {
-				botonesJuego[i][j].setEnabled(false);
+			for (int i = 0; i < botonesJuego.length; i++) {
+				for (int j = 0; j < botonesJuego[i].length; j++) {
+					botonesJuego[i][j].setEnabled(false);
+				}
 			}
 		}
 	}
