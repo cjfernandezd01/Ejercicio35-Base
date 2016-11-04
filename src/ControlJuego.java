@@ -73,7 +73,6 @@ public class ControlJuego {
 		
 		puntuacion = 0;
 		
-		depurarTablero();
 	}
 	
 	/**Cálculo de las minas adjuntas:
